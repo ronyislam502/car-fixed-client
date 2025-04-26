@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@layer utilities {
+  @keyframes zoomSlow {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.25);
+    }
+  }
+
+  .animate-zoomSlow {
+    animation: zoomSlow 6s ease-in-out infinite alternate;
+  }
+}
