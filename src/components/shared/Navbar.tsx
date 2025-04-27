@@ -9,7 +9,7 @@ const Navbar = () => {
       }}
     >
       <Container>
-        <div className="navbar shadow-sm">
+        <div className="navbar shadow-sm text-white">
           <div className="navbar-start">
             <div className="dropdown">
               <div

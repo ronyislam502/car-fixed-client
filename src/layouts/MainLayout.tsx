@@ -6,8 +6,10 @@ const MainLayout = () => {
   return (
     <div
       style={{
-        backgroundImage:
-          "url(https://i.postimg.cc/9F8nq7z5/gradient-connection-background-23-2150462053.avif)",
+        backgroundImage: "url(https://i.postimg.cc/HsKs93LT/car-3.jpg)",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       <Navbar />

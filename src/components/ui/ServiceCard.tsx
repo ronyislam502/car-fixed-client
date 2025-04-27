@@ -6,7 +6,7 @@ type TProps = {
 
 const ServiceCard = ({ service }: TProps) => {
   return (
-    <div className="card">
+    <div className="card transform transition-transform duration-300 hover:scale-105 shadow-md hover:shadow-xl">
       <img
         src={service?.image}
         alt="Services"
