@@ -5,10 +5,8 @@ import { baseApi } from "../../api/baseApi";
 const slotApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllSlots: builder.query({
-      query: (args) => {
-        console.log(args);
+      query: () => {
         const params = new URLSearchParams();
-        console.log(params);
 
         return {
           url: "/slots",

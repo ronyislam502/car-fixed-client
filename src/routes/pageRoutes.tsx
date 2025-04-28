@@ -1,30 +1,17 @@
+import Services from "@/pages/Services/Services";
 import Home from "../pages/Home/Home";
 
 export const pageRoutes = [
   {
+    name: "Home",
     path: "/",
     element: <Home />,
     children: [
-      //   {
-      //     path: "services",
-      //     element: <Services />,
-      //   },
-      //   {
-      //     path: "servicesCompare",
-      //     element: <ServiceCompare />,
-      //   },
-      //   {
-      //     path: "reviews",
-      //     element: <Reviews />,
-      //   },
-      //   {
-      //     path: "booking",
-      //     element: <Booking />,
-      //   },
-      //   {
-      //     path: "signUp",
-      //     element: <SignUp />,
-      //   },
+      {
+        name: "Services",
+        path: "services",
+        element: <Services />,
+      },
     ],
   },
 ];

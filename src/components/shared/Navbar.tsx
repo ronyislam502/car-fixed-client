@@ -1,6 +1,24 @@
+import { MenuLinks } from "@/utils/navMenu";
 import Container from "../ui/Container";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useAppSelector } from "@/redux/hooks";
+import { logout, TUser } from "@/redux/features/auth/authSlice";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { useGetUserByEmailQuery } from "@/redux/features/user/userApi";
 
 const Navbar = () => {
+  const loggedUser = useAppSelector((state) => state?.auth?.user) as TUser;
+  const { data: user } = useGetUserByEmailQuery(loggedUser?.email);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    toast.success("Log out successfully");
+    navigate("/");
+  };
+
   return (
     <div
       style={{
@@ -37,52 +55,53 @@ const Navbar = () => {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content font-bold text-xl rounded-box z-1 mt-3 w-52 p-2 shadow"
               >
-                <li>
-                  <a>Item 1</a>
-                </li>
-                <li>
-                  <a>Parent</a>
-                  <ul className="p-2">
-                    <li>
-                      <a>Submenu 1</a>
-                    </li>
-                    <li>
-                      <a>Submenu 2</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a>Item 3</a>
-                </li>
+                {MenuLinks?.map((menu) => (
+                  <NavLink key={menu?.name} to={menu?.path}>
+                    {menu?.name}
+                  </NavLink>
+                ))}
               </ul>
             </div>
-            <a className="btn btn-ghost text-xl">Car-Fixed</a>
+            <Link to="/" className="text-2xl text-cyan-500 font-extrabold">
+              Car-Fixed
+            </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <details>
-                  <summary>Parent</summary>
-                  <ul className="p-2">
-                    <li>
-                      <a>Submenu 1</a>
-                    </li>
-                    <li>
-                      <a>Submenu 2</a>
-                    </li>
-                  </ul>
-                </details>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li>
+            <ul className="menu menu-horizontal px-1 font-bold text-xl">
+              {MenuLinks?.map((menu, idx) => (
+                <Link className="px-2" key={idx} to={menu?.path}>
+                  {menu?.name}
+                </Link>
+              ))}
             </ul>
           </div>
           <div className="navbar-end">
-            <a className="btn">Button</a>
+            {user ? (
+              <div className="dropdown dropdown-start">
+                <div tabIndex={0} role="button">
+                  <div className="avatar">
+                    <div className="w-10 rounded-full">
+                      <img src={user.data[0].avatar} />
+                    </div>
+                  </div>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content menu rounded-box z-1 w-52 p-2 shadow-sm bg-transparent text-xl font-bold text-blue-700"
+                >
+                  <li>
+                    <Link to={`/${user.data[0].role}`}>Dashboard</Link>
+                  </li>
+                  <li onClick={handleLogout}>
+                    <a>logout</a>
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              <Link to="/login" className="btn">
+                Login
+              </Link>
+            )}
           </div>
         </div>
       </Container>

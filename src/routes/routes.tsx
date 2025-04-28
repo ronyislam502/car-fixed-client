@@ -4,6 +4,8 @@ import { pageRoutes } from "./pageRoutes";
 import App from "../App";
 import Login from "@/pages/Auth/Login";
 import Register from "@/pages/Auth/Register";
+import Dashboard from "@/layouts/Dashboard";
+import { adminRoutes } from "./adminRoutes";
 
 const routes = createBrowserRouter([
   {
@@ -11,6 +13,12 @@ const routes = createBrowserRouter([
     element: <App />,
     children: routeGenerator(pageRoutes),
   },
+  {
+    path: "/admin",
+    element: <Dashboard />,
+    children: routeGenerator(adminRoutes),
+  },
+
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
 ]);

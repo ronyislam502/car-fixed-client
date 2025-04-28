@@ -22,7 +22,7 @@ const Login = () => {
     const user = verifyToken(res?.data?.accessToken);
     dispatch(setUser({ user: user, token: res.data.accessToken }));
     if (res?.success) {
-      toast(res.message);
+      toast.success(res.message);
       navigate("/");
     }
     console.log("data", res.data);

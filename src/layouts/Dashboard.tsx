@@ -1,0 +1,39 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import Footer from "@/components/shared/Footer";
+import Navbar from "@/components/shared/Navbar";
+import Sidebar from "@/components/sidebar/Sidebar";
+import Container from "@/components/ui/Container";
+import { Outlet } from "react-router-dom";
+
+const Dashboard = () => {
+  return (
+    <div
+      className=""
+      style={{
+        backgroundImage: "url(https://i.postimg.cc/cLZtfCmD/car-dis.webp)",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <Navbar />
+      <Container>
+        <div className="flex flex-col lg:flex-row gap-4 h-[68vh]">
+          {/* Sidebar */}
+          <div className="w-full lg:w-1/4">
+            <Sidebar />
+          </div>
+
+          {/* Main Content */}
+          <div className="w-full lg:w-3/4">
+            <Outlet />
+          </div>
+        </div>
+      </Container>
+      <Footer />
+    </div>
+  );
+};
+
+export default Dashboard;

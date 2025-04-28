@@ -5,21 +5,21 @@ import { TService } from "@/types/service";
 const serviceApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     allServices: builder.query({
-      query: () => {
+      query: ({ search, sort, page, limit }) => {
         const params = new URLSearchParams();
 
-        // if (search) {
-        //   params.append("searchTerm", search);
-        // }
-        // if (sort) {
-        //   params.append("sort", sort);
-        // }
-        // if (page) {
-        //   params.append("page", page);
-        // }
-        // if (limit) {
-        //   params.append("limit", limit);
-        // }
+        if (search) {
+          params.append("searchTerm", search);
+        }
+        if (sort) {
+          params.append("sort", sort);
+        }
+        if (page) {
+          params.append("page", page);
+        }
+        if (limit) {
+          params.append("limit", limit);
+        }
 
         return {
           url: "/services",
