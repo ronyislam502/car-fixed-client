@@ -17,9 +17,12 @@ const CFSelect = ({ name, label, options }: IProps) => {
   return (
     <div className="form-control">
       <label className="label">
-        <span className="label-text">{label}</span>
+        <span className="label-text text-white">{label}</span>
       </label>
-      <select {...register(name)} className="select select-bordered">
+      <select
+        {...register(name)}
+        className="select select-bordered select-success"
+      >
         {options.map((option) => (
           <option key={option?.key} value={option?.label}>
             {option.label}

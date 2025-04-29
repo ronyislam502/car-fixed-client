@@ -12,12 +12,13 @@ const CFInput = ({ name, label, type = "text", placeholder = "" }: IProps) => {
   return (
     <div className="form-control">
       <label className="label">
-        <span className="label-text text-xl font-bold">{label}</span>
+        <span className="label-text text-xl font-bold text-white">{label}</span>
       </label>
       <input
         type={type}
         placeholder={placeholder}
-        {...register(name)}
+        // {...register(name)}
+        {...register(name, type === "number" ? { valueAsNumber: true } : {})}
         className="input input-bordered  input-success bg-transparent"
       />
       {errors[name] && (

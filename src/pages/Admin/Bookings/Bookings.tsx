@@ -24,6 +24,7 @@ const Bookings = () => {
           <thead className="">
             <tr className="bg-blue-950">
               <th>Date</th>
+              <th>TNXID</th>
               <th>User</th>
               <th>Email</th>
               <th>Service</th>
@@ -31,13 +32,13 @@ const Bookings = () => {
               <th>Duration</th>
               <th>StartTime</th>
               <th>EndTime</th>
-              <th>isBooked</th>
             </tr>
           </thead>
           <tbody>
             {bookings?.data?.data?.map((booking: TBooking) => (
               <tr key={booking._id}>
                 <td>{formatDate(booking.createdAt)}</td>
+                <td>{booking?.transactionId}</td>
                 <td>{booking?.user?.name}</td>
                 <td>{booking?.user?.email}</td>
                 <td>{booking?.service?.title}</td>

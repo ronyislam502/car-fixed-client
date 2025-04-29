@@ -13,12 +13,12 @@ const CFTextarea = ({ name, label, placeholder = "" }: IProps) => {
   return (
     <div className="form-control">
       <label className="label">
-        <span className="label-text">{label}</span>
+        <span className="label-text text-white">{label}</span>
       </label>
       <textarea
         placeholder={placeholder}
         {...register(name)}
-        className="textarea textarea-bordered"
+        className="textarea textarea-bordered textarea-success bg-transparent"
       />
       {errors[name] && (
         <p className="text-red-500 text-sm">

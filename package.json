@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.0.1",
     "@reduxjs/toolkit": "^2.7.0",
     "@tailwindcss/vite": "^4.1.4",
     "embla-carousel": "^8.6.0",
@@ -21,7 +22,9 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^7.5.2",
     "react-toastify": "^11.0.5",
-    "redux-persist": "^6.0.0"
+    "recharts": "^2.15.3",
+    "redux-persist": "^6.0.0",
+    "zod": "^3.24.3"
   },
   "devDependencies": {
     "@types/node": "^22.15.2",

@@ -7,7 +7,7 @@ const Services = () => {
   const { data: services } = useAllServicesQuery({});
 
   return (
-    <div className="h-[70vh]">
+    <div className="">
       <Container>
         <h1 className="text-center text-black font-extrabold text-4xl my-10">
           Service

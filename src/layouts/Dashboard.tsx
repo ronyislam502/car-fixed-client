@@ -9,7 +9,7 @@ import { Outlet } from "react-router-dom";
 const Dashboard = () => {
   return (
     <div
-      className=""
+      className="h-[100vh]"
       style={{
         backgroundImage: "url(https://i.postimg.cc/cLZtfCmD/car-dis.webp)",
         backgroundRepeat: "no-repeat",
@@ -19,14 +19,14 @@ const Dashboard = () => {
     >
       <Navbar />
       <Container>
-        <div className="flex flex-col lg:flex-row gap-4 h-[68vh]">
+        <div className="flex flex-col lg:flex-row gap-4 ">
           {/* Sidebar */}
           <div className="w-full lg:w-1/4">
             <Sidebar />
           </div>
 
           {/* Main Content */}
-          <div className="w-full lg:w-3/4">
+          <div className="w-full lg:w-3/4 h-[70vh]">
             <Outlet />
           </div>
         </div>

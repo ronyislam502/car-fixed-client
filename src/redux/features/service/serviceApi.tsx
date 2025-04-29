@@ -5,11 +5,14 @@ import { TService } from "@/types/service";
 const serviceApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     allServices: builder.query({
-      query: ({ search, sort, page, limit }) => {
+      query: ({ search, sort, page, limit, category }) => {
         const params = new URLSearchParams();
 
         if (search) {
           params.append("searchTerm", search);
+        }
+        if (category) {
+          params.append("category", category);
         }
         if (sort) {
           params.append("sort", sort);
@@ -44,7 +47,7 @@ const serviceApi = baseApi.injectEndpoints({
     }),
     addService: builder.mutation({
       query: (data) => ({
-        url: "/services/create-product",
+        url: "/services/create-service",
         method: "POST",
         body: data,
       }),
@@ -71,7 +74,7 @@ const serviceApi = baseApi.injectEndpoints({
 export const {
   useAllServicesQuery,
   useSingleServiceQuery,
-  useAddServiceMutation,
   useUpdateServiceMutation,
   useDeleteServiceMutation,
+  useAddServiceMutation,
 } = serviceApi;

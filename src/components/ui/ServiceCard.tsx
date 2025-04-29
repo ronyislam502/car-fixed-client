@@ -10,7 +10,7 @@ const ServiceCard = ({ service }: TProps) => {
       <img
         src={service?.image}
         alt="Services"
-        className="rounded-t-lg h-[300px]"
+        className="rounded-t-lg h-[200px] w-full"
       />
       <div
         className="card-body items-center text-center rounded-b-lg"
@@ -23,7 +23,7 @@ const ServiceCard = ({ service }: TProps) => {
         <p className="font-bold">
           {(service?.description as string).slice(0, 95)}.....{" "}
         </p>
-        <div className="flex gap-6 text-xl font-bold">
+        <div className="flex gap-6 text-sm font-bold">
           <p>Price: ${service?.price}</p>
           <p>duration: {service.duration}min</p>
         </div>

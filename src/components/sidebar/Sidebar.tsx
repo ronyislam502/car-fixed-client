@@ -52,7 +52,7 @@ const Sidebar = () => {
 
       {/* Sidebar for Desktop */}
       <div
-        className="hidden lg:block p-4 rounded-md"
+        className="hidden lg:block p-2 rounded-md"
         style={{
           backgroundImage:
             "url(https://i.postimg.cc/3xhFNrF5/Screenshot-2025-04-27-061224.png)",
