@@ -1,5 +1,5 @@
 import { IInput } from "@/types/global";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, useWatch } from "react-hook-form";
 
 interface IProps extends IInput {
   options: {
@@ -13,24 +13,31 @@ const CFSelect = ({ name, label, options }: IProps) => {
     register,
     formState: { errors },
   } = useFormContext();
+  const currentValue = useWatch({ name });
 
   return (
-    <div className="form-control">
+    <div className="form-control w-full">
       <label className="label">
-        <span className="label-text text-white">{label}</span>
+        <span className="label-text text-white text-xl">{label}</span>
       </label>
       <select
         {...register(name)}
-        className="select select-bordered select-success"
+        className={`select text-white bg-black/50 select-bordered w-full ${
+          errors[name] ? "select-error" : "select-success"
+        }`}
+        value={currentValue || ""}
       >
+        <option value="" disabled>
+          Select {label}
+        </option>
         {options.map((option) => (
-          <option key={option?.key} value={option?.label}>
+          <option key={option.key} value={option.key}>
             {option.label}
           </option>
         ))}
       </select>
       {errors[name] && (
-        <p className="text-red-500 text-sm">
+        <p className="text-red-500 text-sm mt-1">
           {errors[name]?.message as string}
         </p>
       )}

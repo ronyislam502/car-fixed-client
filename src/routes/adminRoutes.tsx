@@ -31,7 +31,7 @@ export const adminRoutes = [
       },
       {
         name: "Dashboard",
-        path: "admin",
+        path: "dashboard",
         element: <Admin />,
       },
     ],

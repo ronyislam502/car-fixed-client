@@ -19,14 +19,14 @@ const Dashboard = () => {
     >
       <Navbar />
       <Container>
-        <div className="flex flex-col lg:flex-row gap-4 ">
+        <div className="flex flex-col lg:flex-row gap-2 ">
           {/* Sidebar */}
-          <div className="w-full lg:w-1/4">
+          <div className="w-full lg:w-1/6 mt-2">
             <Sidebar />
           </div>
 
           {/* Main Content */}
-          <div className="w-full lg:w-3/4 h-[70vh]">
+          <div className="w-full lg:w-5/6 h-[60vh]">
             <Outlet />
           </div>
         </div>

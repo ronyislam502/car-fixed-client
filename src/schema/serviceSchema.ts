@@ -33,3 +33,15 @@ export const categoryOption = [
   { key: "others", label: "Others" },
   { key: "maintain", label: "Maintain" },
 ];
+
+export const vehicleOption = [
+  { key: "car", label: "Car" },
+  { key: "truck", label: "Truck" },
+  { key: "suv", label: "SUV" },
+  { key: "van", label: "Van" },
+  { key: "motorcycle", label: "Motorcycle" },
+  { key: "bus", label: "Bus" },
+  { key: "electricVehicle", label: "ElectricVehicle" },
+  { key: "hybridVehicle", label: "HybridVehicle" },
+  { key: "tractor", label: "Tractor" },
+];

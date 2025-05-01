@@ -2,11 +2,10 @@ import Container from "@/components/ui/Container";
 import { useAllServicesQuery } from "@/redux/features/service/serviceApi";
 import { TService } from "@/types/service";
 import ServiceCard from "@/components/ui/ServiceCard";
+import CardSkeleton from "@/components/ui/CardSkelaton";
 
 const OurServices = () => {
-  const { data: services } = useAllServicesQuery({});
-
-  console.log("data", services);
+  const { data: services, isLoading } = useAllServicesQuery({});
 
   return (
     <Container>
@@ -14,9 +13,13 @@ const OurServices = () => {
         Our Services
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-10 text-white px-10">
-        {services?.data?.map((service: TService) => (
-          <ServiceCard key={service._id} service={service} />
-        ))}
+        {isLoading ? (
+          <CardSkeleton count={8} />
+        ) : (
+          services?.data?.map((service: TService) => (
+            <ServiceCard key={service._id} service={service} />
+          ))
+        )}
       </div>
     </Container>
   );

@@ -6,6 +6,8 @@ import Login from "@/pages/Auth/Login";
 import Register from "@/pages/Auth/Register";
 import Dashboard from "@/layouts/Dashboard";
 import { adminRoutes } from "./adminRoutes";
+import ProtectedRoute from "./privateRoutes";
+import { userRoutes } from "./userRoutes";
 
 const routes = createBrowserRouter([
   {
@@ -14,11 +16,23 @@ const routes = createBrowserRouter([
     children: routeGenerator(pageRoutes),
   },
   {
-    path: "/admin",
-    element: <Dashboard />,
+    path: "/ADMIN",
+    element: (
+      <ProtectedRoute role="ADMIN">
+        <Dashboard />
+      </ProtectedRoute>
+    ),
     children: routeGenerator(adminRoutes),
   },
-
+  {
+    path: "/user",
+    element: (
+      <ProtectedRoute role="USER">
+        <Dashboard />
+      </ProtectedRoute>
+    ),
+    children: routeGenerator(userRoutes),
+  },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
 ]);

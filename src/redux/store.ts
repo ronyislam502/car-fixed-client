@@ -13,6 +13,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import serviceComparisonReducer from "./features/service/serviceCompareSlice";
+import bookingReducer from "./features/booking/bookingSlice";
 
 const persistConfig = {
   key: "auth",
@@ -26,6 +27,7 @@ export const store = configureStore({
     [baseApi.reducerPath]: baseApi.reducer,
     auth: persistedAuthReducer,
     serviceComparison: serviceComparisonReducer,
+    booking: bookingReducer,
   },
   middleware: (getDefaultMiddlewares) =>
     getDefaultMiddlewares({

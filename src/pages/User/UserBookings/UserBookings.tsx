@@ -1,9 +1,11 @@
-import { useGetAllBookingsQuery } from "@/redux/features/booking/bookingApi";
+import { useGetMyBookingsQuery } from "@/redux/features/booking/bookingApi";
+import { useAppSelector } from "@/redux/hooks";
 import { TBooking } from "@/types/booking";
 import { convert24HourToAM_PM, formatDate } from "@/utils/Date";
 
-const Bookings = () => {
-  const { data: bookings } = useGetAllBookingsQuery({});
+const UserBookings = () => {
+  const user = useAppSelector((state) => state.auth.user);
+  const { data: bookings } = useGetMyBookingsQuery(user?.email);
 
   console.log("data", bookings);
 
@@ -19,8 +21,7 @@ const Bookings = () => {
             <tr className="bg-blue-700 text-green-500 text-sm">
               <th>Date</th>
               <th>TNXID</th>
-              <th>User</th>
-              <th>Email</th>
+              <th>Image</th>
               <th>Service</th>
               <th>Price($)</th>
               <th>Duration</th>
@@ -34,8 +35,13 @@ const Bookings = () => {
               <tr key={booking._id}>
                 <td>{formatDate(booking.createdAt)}</td>
                 <td>{booking?.transactionId}</td>
-                <td>{booking?.user?.name}</td>
-                <td>{booking?.user?.email}</td>
+                <td>
+                  <div className="avatar">
+                    <div className="w-12 rounded-full">
+                      <img src={booking?.service?.image} />
+                    </div>
+                  </div>
+                </td>
                 <td>{booking?.service?.title}</td>
                 <td>{(booking?.service?.price as number).toFixed(2)}</td>
                 <th>{booking?.service?.duration}min</th>
@@ -51,4 +57,4 @@ const Bookings = () => {
   );
 };
 
-export default Bookings;
+export default UserBookings;

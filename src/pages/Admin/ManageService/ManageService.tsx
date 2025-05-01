@@ -5,6 +5,7 @@ import { useState } from "react";
 import AddService from "../component/AddService";
 import UpdateService from "../component/UpdateService";
 import DeleteService from "../component/DeleteService";
+import TableSkeleton from "@/components/ui/TableSkeleton";
 
 const ManageService = () => {
   const [category, setCategory] = useState("");
@@ -14,7 +15,7 @@ const ManageService = () => {
   const [sort, setSort] = useState("");
   const debouncedSearch = useDebounce(search, 500);
 
-  const { data: services } = useAllServicesQuery({
+  const { data: services, isLoading } = useAllServicesQuery({
     category,
     search: debouncedSearch,
     limit,
@@ -22,23 +23,12 @@ const ManageService = () => {
     sort,
   });
 
-  // const handlePageChange = (newPage: number) => {
-  //   if (newPage >= 1 && newPage <= (services?.meta?.totalPage || 1)) {
-  //     setPage(newPage);
-  //   }
-  // };
+  const totalPages = services?.meta?.totalPage || 1;
 
   return (
-    <div
-      className="my-2"
-      style={{
-        backgroundImage:
-          "url(https://i.postimg.cc/3xhFNrF5/Screenshot-2025-04-27-061224.png)",
-      }}
-    >
+    <div className="my-2 bg-black/80">
       <div className="text-xl font-bold text-center py-2">
         <h2 className="text-xl pb-2">Service Management</h2>
-
         <div className="flex gap-2 px-2">
           <input
             className="input input-success"
@@ -72,7 +62,7 @@ const ManageService = () => {
         <table className="table">
           {/* head */}
           <thead className="">
-            <tr className="bg-blue-950">
+            <tr className="bg-blue-700 text-green-500 text-lg">
               <th>Image</th>
               <th>Title</th>
               <th>Category</th>
@@ -82,38 +72,50 @@ const ManageService = () => {
             </tr>
           </thead>
           <tbody>
-            {services?.data?.map((service: TService) => (
-              <tr key={service._id}>
-                <td>
-                  <div className="avatar">
-                    <div className="w-12 rounded-full">
-                      <img src={service.image} />
+            {isLoading ? (
+              <TableSkeleton columns={6} rows={limit} />
+            ) : (
+              services?.data?.map((service: TService) => (
+                <tr key={service._id}>
+                  <td>
+                    <div className="avatar">
+                      <div className="w-12 rounded-full">
+                        <img src={service.image} />
+                      </div>
                     </div>
-                  </div>
-                </td>
-                <td>{service?.title}</td>
-                <td>{service?.category}</td>
-                <td>{service?.duration}min</td>
-                <td>$ {(service?.price as number).toFixed(2)}</td>
-                <th className="flex gap-2">
-                  <UpdateService service={service} />
-                  <DeleteService service={service} />
-                </th>
-              </tr>
-            ))}
+                  </td>
+                  <td>{service?.title}</td>
+                  <td>{service?.category}</td>
+                  <td>{service?.duration}min</td>
+                  <td>$ {(service?.price as number).toFixed(2)}</td>
+                  <th className="flex gap-2">
+                    <UpdateService service={service} />
+                    <DeleteService service={service} />
+                  </th>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
-        {/* pagination */}
-        {/* <div className="join mt-4 align-center text-center p-2">
-          <input
-            className="join-item btn btn-square"
-            type=""
-            name="page"
-            aria-label={page}
-            checked={page === page + 1}
-            onChange={() => handlePageChange}
-          />
-        </div> */}
+      </div>
+      <div className="flex gap-2 my-2 px-10">
+        <button
+          className="btn btn-outline btn-primary text-white btn-sm"
+          disabled={page <= 1}
+          onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+        >
+          Prev
+        </button>
+        <span className="text-white">
+          {page} / {totalPages}
+        </span>
+        <button
+          className="btn btn-outline btn-primary text-white btn-sm"
+          disabled={page >= totalPages}
+          onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
+        >
+          Next
+        </button>
       </div>
     </div>
   );

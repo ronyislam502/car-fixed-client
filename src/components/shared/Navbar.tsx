@@ -77,7 +77,7 @@ const Navbar = () => {
           </div>
           <div className="navbar-end">
             {user ? (
-              <div className="dropdown dropdown-start">
+              <div className="dropdown dropdown-center">
                 <div tabIndex={0} role="button">
                   <div className="avatar">
                     <div className="w-10 rounded-full">
@@ -87,10 +87,12 @@ const Navbar = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content menu rounded-box z-1 w-52 p-2 shadow-sm bg-transparent text-xl font-bold text-blue-700"
+                  className="dropdown-content menu rounded-box z-1 w-52 p-2 shadow-sm bg-black/80 text-xl font-bold text-blue-700"
                 >
                   <li>
-                    <Link to={`/${user.data[0].role}`}>Dashboard</Link>
+                    <Link to={`/${user.data[0].role}/dashboard`}>
+                      Dashboard
+                    </Link>
                   </li>
                   <li onClick={handleLogout}>
                     <a>logout</a>

@@ -3,7 +3,9 @@ import CFInput from "@/components/form/CFInput";
 import { useLogInMutation } from "@/redux/features/auth/authApi";
 import { setUser } from "@/redux/features/auth/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
+import { loginValidationSchema } from "@/schema/authSchema";
 import { verifyToken } from "@/utils/verifyToken";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldValues } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -20,12 +22,11 @@ const Login = () => {
     };
     const res = await login(authInfo).unwrap();
     const user = verifyToken(res?.data?.accessToken);
-    dispatch(setUser({ user: user, token: res.data.accessToken }));
+    dispatch(setUser({ user: user, token: res?.data?.accessToken }));
     if (res?.success) {
-      toast.success(res.message);
+      toast.success(res?.message);
       navigate("/");
     }
-    console.log("data", res.data);
   };
 
   return (
@@ -42,7 +43,10 @@ const Login = () => {
       <div>
         <h3 className="my-2 text-2xl font-bold">Login with Car-Fixed</h3>
         <p className="mb-4">Welcome Back! Let&lsquo;s Get Started</p>
-        <CFForm onSubmit={onSubmit}>
+        <CFForm
+          resolver={zodResolver(loginValidationSchema)}
+          onSubmit={onSubmit}
+        >
           <div className="py-3">
             <CFInput label="Email" name="email" type="email" />
           </div>

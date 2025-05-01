@@ -5,8 +5,15 @@ import { baseApi } from "../../api/baseApi";
 const slotApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllSlots: builder.query({
-      query: () => {
+      query: ({ page, limit }) => {
         const params = new URLSearchParams();
+
+        if (page) {
+          params.append("page", page);
+        }
+        if (limit) {
+          params.append("limit", limit);
+        }
 
         return {
           url: "/slots",
@@ -37,6 +44,20 @@ const slotApi = baseApi.injectEndpoints({
       }),
       providesTags: ["service"],
     }),
+    getSingleSlot: builder.query({
+      query: (id) => ({
+        url: `/slots/slot/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["service"],
+    }),
+    getServiceSlots: builder.query({
+      query: (id) => ({
+        url: `/slots/service/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["service"],
+    }),
   }),
 });
 
@@ -44,4 +65,6 @@ export const {
   useCreateSlotMutation,
   useGetAllSlotsQuery,
   useGetAvailableSlotQuery,
+  useGetServiceSlotsQuery,
+  useGetSingleSlotQuery,
 } = slotApi;

@@ -5,12 +5,7 @@ const Users = () => {
   const { data: users } = useAllUsersQuery("");
 
   return (
-    <div
-      style={{
-        backgroundImage:
-          "url(https://i.postimg.cc/3xhFNrF5/Screenshot-2025-04-27-061224.png)",
-      }}
-    >
+    <div className="bg-black/80">
       <div className="text-xl font-bold text-center py-6">
         <h2>Users</h2>
         <h2>Total Users: {users?.data?.length}</h2>
@@ -19,12 +14,13 @@ const Users = () => {
         <table className="table">
           {/* head */}
           <thead className="">
-            <tr className="bg-blue-950">
+            <tr className="bg-blue-700 text-green-500 text-lg">
               <th>Avatar</th>
               <th>Name</th>
               <th>Email</th>
               <th>Phone</th>
               <th>Role</th>
+              <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -42,6 +38,7 @@ const Users = () => {
                 <td>{user?.email}</td>
                 <td>{user?.phone}</td>
                 <td>{user?.role}</td>
+                <td>{user?.status}</td>
                 <th>
                   <button
                     // onClick={() => handleDeleteUser(user)}

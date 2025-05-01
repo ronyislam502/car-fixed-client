@@ -41,6 +41,13 @@ const reviewApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["review"],
     }),
+    getServiceReviews: builder.query({
+      query: (id) => ({
+        url: `/reviews/service/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["service"],
+    }),
   }),
 });
 
@@ -48,4 +55,5 @@ export const {
   useAllReviewsQuery,
   useAddReviewMutation,
   useUpdateReviewMutation,
+  useGetServiceReviewsQuery,
 } = reviewApi;

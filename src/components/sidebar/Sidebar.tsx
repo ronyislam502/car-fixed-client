@@ -33,7 +33,7 @@ const Sidebar = () => {
         </div>
         <ul
           tabIndex={0}
-          className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-transparent text-green-500 rounded-box w-52"
+          className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-black/80 text-green-500 rounded-box w-52 "
         >
           {links[0]?.children?.map((menu: TUserPath) => (
             <li key={menu?.name}>
@@ -51,13 +51,7 @@ const Sidebar = () => {
       </div>
 
       {/* Sidebar for Desktop */}
-      <div
-        className="hidden lg:block p-2 rounded-md"
-        style={{
-          backgroundImage:
-            "url(https://i.postimg.cc/3xhFNrF5/Screenshot-2025-04-27-061224.png)",
-        }}
-      >
+      <div className="hidden lg:block p-2 rounded-md bg-black/80">
         <ul className="space-y-3 text-center font-bold text-xl">
           {links[0]?.children?.map((menu: TUserPath) => (
             <li key={menu?.name}>

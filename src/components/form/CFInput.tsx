@@ -3,7 +3,13 @@ import { useFormContext } from "react-hook-form";
 
 interface IProps extends IInput {}
 
-const CFInput = ({ name, label, type = "text", placeholder = "" }: IProps) => {
+const CFInput = ({
+  name,
+  label,
+  type = "text",
+  placeholder = "",
+  disabled,
+}: IProps) => {
   const {
     register,
     formState: { errors },
@@ -17,6 +23,7 @@ const CFInput = ({ name, label, type = "text", placeholder = "" }: IProps) => {
       <input
         type={type}
         placeholder={placeholder}
+        disabled={disabled}
         // {...register(name)}
         {...register(name, type === "number" ? { valueAsNumber: true } : {})}
         className="input input-bordered  input-success bg-transparent"
