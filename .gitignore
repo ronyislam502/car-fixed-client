@@ -23,3 +23,4 @@ dist-ssr
 *.sln
 *.sw?
 # git remote add origin https://github.com/ronyislam502/car-fixed-client.git
+.vercel
