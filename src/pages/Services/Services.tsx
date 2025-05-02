@@ -1,4 +1,4 @@
-import CardSkeleton from "@/components/ui/CardSkelaton";
+import CardSkeleton from "@/components/skeleton/CardSkelaton";
 import Container from "@/components/ui/Container";
 import ServiceCard from "@/components/ui/ServiceCard";
 import { useAllServicesQuery } from "@/redux/features/service/serviceApi";

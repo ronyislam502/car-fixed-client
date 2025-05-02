@@ -1,29 +1,24 @@
 import CFForm from "@/components/form/CFFrom";
 import CFInput from "@/components/form/CFInput";
-import CFSelect from "@/components/form/CFSelect";
-import CFTextarea from "@/components/form/CFTextarea";
-import { useUpdateServiceMutation } from "@/redux/features/service/serviceApi";
-import {
-  categoryOption,
-  updateServiceValidationSchema,
-} from "@/schema/serviceSchema";
+import { useUpdateUserMutation } from "@/redux/features/user/userApi";
+import { updateUserValidationSchema } from "@/schema/userSchema";
 import { TError } from "@/types/global";
-import { TService } from "@/types/service";
+import { TUserDetail } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChangeEvent, useState } from "react";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 type TProps = {
-  service: TService;
+  user: TUserDetail;
 };
 
-const UpdateService = ({ service }: TProps) => {
+const EditProfile = ({ user }: TProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [previewImage, setPreviewImage] = useState(service?.image || "");
+  const [previewImage, setPreviewImage] = useState(user?.avatar || "");
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const methods = useForm();
-  const [updateService] = useUpdateServiceMutation();
+  const [userUpdate] = useUpdateUserMutation();
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -31,43 +26,40 @@ const UpdateService = ({ service }: TProps) => {
     if (file) {
       setSelectedImage(file);
       const imageUrl = URL.createObjectURL(file);
-      console.log("img", imageUrl);
+      //   console.log("img", imageUrl);
 
       setPreviewImage(imageUrl);
     }
   };
 
   const onSubmit = async (data: FieldValues) => {
-    const numericPrice = Number(data?.price);
-    const numericDuration = Number(data?.duration);
-
-    if (isNaN(numericPrice) || isNaN(numericDuration)) {
-      toast.error("Duration and Price must be valid numbers.");
-      return;
-    }
     const formData = new FormData();
 
     try {
-      const serviceData = {
-        title: data?.title,
-        description: data?.description,
-        duration: numericDuration,
-        price: numericPrice,
-        category: data?.category,
+      const userInfo = {
+        name: data?.name,
+        email: data?.email,
+        phone: data?.phone,
+        address: data?.address,
       };
 
-      formData.append("data", JSON.stringify(serviceData));
+      //   console.log("user-data", userInfo);
+
       if (selectedImage) {
-        formData.append("image", selectedImage);
+        formData.append("avatar", selectedImage);
       }
 
-      const res = await updateService({
-        id: service?._id,
+      formData.append("data", JSON.stringify(userInfo));
+
+      const res = await userUpdate({
+        id: user._id,
         data: formData,
       }).unwrap();
+
+      //   console.log("view-res", res);
+
       if (res?.success) {
         toast.success(res?.message);
-        methods.reset();
         setIsOpen(false);
       }
     } catch (error) {
@@ -98,37 +90,27 @@ const UpdateService = ({ service }: TProps) => {
               <div>
                 <CFForm
                   defaultValues={{
-                    title: service?.title,
-                    description: service?.description,
-                    price: service?.price,
-                    category: service?.category,
-                    duration: service?.duration,
+                    name: user?.name,
+                    phone: user?.phone,
+                    email: user?.email,
+                    address: user?.address,
                   }}
-                  resolver={zodResolver(updateServiceValidationSchema)}
+                  resolver={zodResolver(updateUserValidationSchema)}
                   onSubmit={onSubmit}
                 >
                   <div className="py-2">
-                    <CFInput label="Title" name="title" type="text" />
+                    <CFInput label="Name" name="name" type="text" />
                   </div>
                   <div className="py-2">
-                    <CFTextarea
-                      label="Description"
-                      name="description"
-                      type="text"
-                    />
+                    <CFInput label="Email" name="email" type="email" />
                   </div>
                   <div className="py-2">
-                    <CFSelect
-                      label="Category"
-                      name="category"
-                      options={categoryOption}
-                    />
+                    <CFInput label="Phone" name="phone" type="text" />
                   </div>
                   <div className="py-2">
-                    <CFInput label="Duration" name="duration" type="number" />
+                    <CFInput label="Address" name="address" type="text" />
                   </div>
                   <div className="py-2">
-                    <CFInput label="Price" name="price" type="number" />
                     <div className="min-w-fit flex-1">
                       <label className="text-xl text-white">Image</label>
                       <input
@@ -171,4 +153,4 @@ const UpdateService = ({ service }: TProps) => {
   );
 };
 
-export default UpdateService;
+export default EditProfile;

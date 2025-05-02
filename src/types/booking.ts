@@ -20,3 +20,10 @@ export type TBooking = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type TBookingCountDown = {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+};

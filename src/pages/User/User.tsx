@@ -1,11 +1,17 @@
 import { TUser } from "@/redux/features/auth/authSlice";
 import { useGetUserByEmailQuery } from "@/redux/features/user/userApi";
 import { useAppSelector } from "@/redux/hooks";
+import EditProfile from "./component/EditProfile";
+import UserSkeleton from "@/components/skeleton/UserSkeleton";
 
 const User = () => {
   const loggedUser = useAppSelector((state) => state.auth.user) as TUser;
-  const { data: userData } = useGetUserByEmailQuery(loggedUser?.email);
+  const { data: userData, isLoading } = useGetUserByEmailQuery(
+    loggedUser?.email
+  );
   const user = userData?.data[0];
+
+  if (isLoading) return <UserSkeleton />;
 
   return (
     <div className="card bg-black/80 shadow-sm">
@@ -47,7 +53,7 @@ const User = () => {
               </div>
             </div>
             <div>
-              <h2>edit</h2>
+              <EditProfile user={user} />
             </div>
           </div>
         </div>

@@ -5,7 +5,7 @@ import { useState } from "react";
 import AddService from "../component/AddService";
 import UpdateService from "../component/UpdateService";
 import DeleteService from "../component/DeleteService";
-import TableSkeleton from "@/components/ui/TableSkeleton";
+import TableSkeleton from "@/components/skeleton/TableSkeleton";
 
 const ManageService = () => {
   const [category, setCategory] = useState("");

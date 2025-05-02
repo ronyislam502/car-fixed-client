@@ -2,7 +2,7 @@ import Container from "@/components/ui/Container";
 import { useAllServicesQuery } from "@/redux/features/service/serviceApi";
 import { TService } from "@/types/service";
 import ServiceCard from "@/components/ui/ServiceCard";
-import CardSkeleton from "@/components/ui/CardSkelaton";
+import CardSkeleton from "@/components/skeleton/CardSkelaton";
 
 const OurServices = () => {
   const { data: services, isLoading } = useAllServicesQuery({});

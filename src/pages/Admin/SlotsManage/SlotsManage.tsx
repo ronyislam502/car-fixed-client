@@ -3,7 +3,7 @@ import { TSlot } from "@/types/slot";
 import { useState } from "react";
 import CreateSlot from "../component/CreateSlot";
 import { convert24HourToAM_PM } from "@/utils/Date";
-import TableSkeleton from "@/components/ui/TableSkeleton";
+import TableSkeleton from "@/components/skeleton/TableSkeleton";
 
 const SlotsManage = () => {
   const [page, setPage] = useState(1);

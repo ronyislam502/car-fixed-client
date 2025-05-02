@@ -17,10 +17,22 @@ const bookingApi = baseApi.injectEndpoints({
       providesTags: ["booking"],
     }),
     getMyBookings: builder.query({
-      query: (email) => ({
-        url: `/bookings/user/${email}`,
-        method: "GET",
-      }),
+      query: ({ user, page, limit }) => {
+        const params = new URLSearchParams();
+
+        if (page) {
+          params.append("page", page);
+        }
+        if (limit) {
+          params.append("limit", limit);
+        }
+
+        return {
+          url: `/bookings/user/${user?.email}`,
+          method: "GET",
+          params: params,
+        };
+      },
       providesTags: ["booking"],
     }),
     createBookings: builder.mutation({

@@ -1,13 +1,21 @@
-import TableSkeleton from "@/components/ui/TableSkeleton";
+import TableSkeleton from "@/components/skeleton/TableSkeleton";
 import { useGetMyBookingsQuery } from "@/redux/features/booking/bookingApi";
 import { useAppSelector } from "@/redux/hooks";
 import { TBooking } from "@/types/booking";
 import { convert24HourToAM_PM, formatDate } from "@/utils/Date";
 import AddReview from "../component/AddReview";
+import { useState } from "react";
 
 const UserBookings = () => {
   const user = useAppSelector((state) => state.auth.user);
-  const { data: bookings, isLoading } = useGetMyBookingsQuery(user?.email);
+  const [page, setPage] = useState(1);
+  const [limit] = useState(8);
+  const { data: bookings, isLoading } = useGetMyBookingsQuery({
+    user,
+    page,
+    limit,
+  });
+  const totalPages = bookings?.meta?.totalPage || 1;
 
   return (
     <div className="mt-2 bg-black/80">
@@ -52,6 +60,25 @@ const UserBookings = () => {
             )}
           </tbody>
         </table>
+      </div>
+      <div className="flex gap-2 my-2 px-10">
+        <button
+          className="btn btn-outline btn-primary text-white btn-sm"
+          disabled={page <= 1}
+          onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+        >
+          Prev
+        </button>
+        <span className="text-white">
+          {page} / {totalPages}
+        </span>
+        <button
+          className="btn btn-outline btn-primary text-white btn-sm"
+          disabled={page >= totalPages}
+          onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
+        >
+          Next
+        </button>
       </div>
     </div>
   );
