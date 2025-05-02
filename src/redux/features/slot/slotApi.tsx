@@ -42,21 +42,21 @@ const slotApi = baseApi.injectEndpoints({
         url: `/slots/availability`,
         method: "GET",
       }),
-      providesTags: ["service"],
+      providesTags: ["slot"],
     }),
     getSingleSlot: builder.query({
       query: (id) => ({
         url: `/slots/slot/${id}`,
         method: "GET",
       }),
-      providesTags: ["service"],
+      providesTags: ["slot"],
     }),
     getServiceSlots: builder.query({
       query: (id) => ({
         url: `/slots/service/${id}`,
         method: "GET",
       }),
-      providesTags: ["service"],
+      providesTags: ["slot"],
     }),
   }),
 });

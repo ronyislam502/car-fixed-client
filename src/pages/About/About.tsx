@@ -1,8 +1,15 @@
+import Container from "@/components/ui/Container";
+import AboutUs from "./components/AboutUs";
+import HowWeWork from "./components/HowWeWork";
+import OurTeam from "./components/OurTeam";
+
 const About = () => {
   return (
-    <div>
-      <h2>This is about page</h2>
-    </div>
+    <Container>
+      <AboutUs />
+      <HowWeWork />
+      <OurTeam />
+    </Container>
   );
 };
 

@@ -1,20 +1,14 @@
 import { useParams } from "react-router-dom";
 import Container from "../../components/ui/Container";
 import { useSingleServiceQuery } from "@/redux/features/service/serviceApi";
-import { useGetServiceReviewsQuery } from "@/redux/features/review/reviewApi";
 import ServiceReviews from "../../components/ui/ServiceReviews";
-import { useGetServiceSlotsQuery } from "@/redux/features/slot/slotApi";
+
 import ServiceSlots from "../../components/ui/ServiceSlots";
 
 const BookingNow = () => {
   const id = useParams();
   const { data: serviceData } = useSingleServiceQuery(id);
   const service = serviceData?.data;
-  // console.log("service", service);
-  const { data: slotData } = useGetServiceSlotsQuery(service?._id);
-  const slots = slotData?.data;
-  const { data: reviewsData } = useGetServiceReviewsQuery(service?._id);
-  const reviews = reviewsData?.data;
 
   return (
     <Container>
@@ -41,12 +35,12 @@ const BookingNow = () => {
               </div>
             </div>
             <div>
-              <ServiceReviews reviews={reviews} />
+              <ServiceReviews serviceId={service?._id} />
             </div>
           </div>
         </div>
         <div className="col-span-1">
-          <ServiceSlots slots={slots} />
+          <ServiceSlots serviceId={service?._id} />
         </div>
       </div>
     </Container>

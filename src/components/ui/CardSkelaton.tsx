@@ -24,7 +24,6 @@ const CardSkeleton = ({ count = 4 }: { count?: number }) => {
             </div>
             <div className="flex justify-center gap-4 w-full">
               <div className="h-10 w-32 bg-gray-700 rounded-md mt-4" />
-              <div className="h-10 w-32 bg-gray-700 rounded-md mt-4" />
             </div>
           </div>
         </div>

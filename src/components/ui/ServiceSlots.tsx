@@ -9,12 +9,11 @@ import {
   setSelectedDate,
   setSlot,
 } from "@/redux/features/booking/bookingSlice";
+import { useGetServiceSlotsQuery } from "@/redux/features/slot/slotApi";
 
-type TProps = {
-  slots: TSlot[];
-};
-
-const ServiceSlots = ({ slots }: TProps) => {
+const ServiceSlots = ({ serviceId }: { serviceId: string }) => {
+  const { data: slotData } = useGetServiceSlotsQuery(serviceId);
+  const slots = slotData?.data;
   const dispatch = useAppDispatch();
   const [selectedDate, setSelectedDateState] = useState<Date | undefined>();
   const [filteredSlots, setFilteredSlots] = useState<TSlot[]>([]);
@@ -59,10 +58,10 @@ const ServiceSlots = ({ slots }: TProps) => {
       </div>
 
       {/* Time Slots */}
-      <div className="bg-white text-black p-6 rounded-xl shadow">
+      <div className="bg-black/80 text-black p-6 rounded-xl shadow">
         <h3 className="text-lg font-semibold mb-4">Available Time Slots</h3>
 
-        {filteredSlots.length > 0 ? (
+        {filteredSlots?.length > 0 ? (
           <div className="grid grid-cols-3 gap-2 mb-4">
             {filteredSlots?.map((slot: TSlot) => (
               <button
@@ -72,10 +71,10 @@ const ServiceSlots = ({ slots }: TProps) => {
                 className={`border rounded px-2 py-2 text-sm font-medium
                   ${
                     slot?.isBooked !== "available"
-                      ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                      : selectedTime === slot?.startTime
+                      ? "bg-gray-200 text-white cursor-not-allowed"
+                      : selectedTime === slot?._id
                       ? "bg-green-600 text-white"
-                      : "hover:bg-green-100 text-black"
+                      : "hover:bg-blue-500 text-white"
                   }`}
               >
                 {slot?.startTime} - {slot?.endTime}
@@ -83,21 +82,30 @@ const ServiceSlots = ({ slots }: TProps) => {
             ))}
           </div>
         ) : (
-          <p className="text-gray-500">No available slots for this date.</p>
+          <p className="text-white">No available slots for this date.</p>
         )}
 
-        <Link to={"/checkOut"}>
+        {selectedTime ? (
+          <Link to={"/checkOut"}>
+            <button
+              className={`btn w-full ${
+                selectedTime
+                  ? "bg-green-500 text-white hover:bg-green-600"
+                  : "bg-gray-200 text-gray-400 cursor-not-allowed"
+              }`}
+              disabled={!selectedTime}
+            >
+              Book This Service
+            </button>
+          </Link>
+        ) : (
           <button
-            className={`btn w-full ${
-              selectedTime
-                ? "bg-green-500 text-white hover:bg-green-600"
-                : "bg-gray-200 text-gray-400 cursor-not-allowed"
-            }`}
-            disabled={!selectedTime}
+            className="btn w-full bg-gray-200 text-gray-400 cursor-not-allowed"
+            disabled
           >
             Book This Service
           </button>
-        </Link>
+        )}
       </div>
     </div>
   );

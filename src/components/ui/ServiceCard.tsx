@@ -24,7 +24,6 @@ const ServiceCard = ({ service }: TProps) => {
           <Link to={`/service/${service?._id}`}>
             <button className="btn btn-outline btn-success">Booking Now</button>
           </Link>
-          <button className="btn btn-outline btn-success">See More</button>
         </div>
       </div>
     </div>

@@ -1,33 +1,34 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   const sliderData = [
     {
       id: 1,
       image: "https://i.postimg.cc/X7HbH2N5/hero-slider-bg-1.png",
-      heading: "Car wash services with easy online booking.",
-      desc: "At Polish Pro, we revolutionize car care with seamless online booking, top-tier services, and a commitment to making your vehicle shine like new—every time.",
+      heading: "Services with easy online booking.",
+      desc: "At Car-Fixed, we revolutionize car care with seamless online booking, top-tier services, and a commitment to making your vehicle shine like new—every time.",
     },
     {
       id: 2,
       image:
         "https://3jon.com/demo/nwp/item/cras/wp-content/uploads/2024/09/hero-bg-video-3.mp4",
       heading: "top-tier services",
-      desc: "At Polish Pro, we revolutionize car care with seamless online booking, top-tier services, and a commitment to making your vehicle shine like new—every time.",
+      desc: "At Car-Fixed, we revolutionize car care with seamless online booking, top-tier services, and a commitment to making your vehicle shine like new—every time.",
     },
     {
       id: 3,
       image: "https://i.postimg.cc/85JzWpXH/hero-slider-bg-2.png",
-      heading: "Fully automatic machine",
-      desc: "At Polish Pro, we revolutionize car care with seamless online booking, top-tier services, and a commitment to making your vehicle shine like new—every time.",
+      heading: "Expert engineer fixed problem",
+      desc: "At Car-Fixed, we revolutionize car care with seamless online booking, top-tier services, and a commitment to making your vehicle shine like new—every time.",
     },
     {
       id: 4,
       image:
         "https://3jon.com/demo/nwp/item/cras/wp-content/uploads/2024/09/hero-bg-video-2-1.mp4",
       heading: "Fully automatic machine",
-      desc: "At Polish Pro, we revolutionize car care with seamless online booking, top-tier services, and a commitment to making your vehicle shine like new—every time.",
+      desc: "At Car-Fixed, we revolutionize car care with seamless online booking, top-tier services, and a commitment to making your vehicle shine like new—every time.",
     },
   ];
 
@@ -71,10 +72,14 @@ const Banner = () => {
                   {slider?.desc}
                 </p>
                 <div className="flex justify-center items-center gap-[10px]">
-                  <button className="btn btn-success">Book Now</button>
-                  <button className="btn btn-outline btn-success">
-                    Services
-                  </button>
+                  <Link to="/services">
+                    <button className="btn btn-success">Book Now</button>
+                  </Link>
+                  <Link to="/services">
+                    <button className="btn btn-outline btn-success">
+                      Services
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>

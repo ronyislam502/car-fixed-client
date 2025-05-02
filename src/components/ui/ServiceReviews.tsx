@@ -1,7 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useGetServiceReviewsQuery } from "@/redux/features/review/reviewApi";
+import { TReview } from "@/types/review";
 import { formatDate } from "@/utils/Date";
 
-const ServiceReviews = ({ reviews }: any) => {
+const ServiceReviews = ({ serviceId }: { serviceId: string }) => {
+  const { data: reviewsData } = useGetServiceReviewsQuery(serviceId);
+  const reviews = reviewsData?.data;
   return (
     <div className="p-2 border border-amber-50 rounded-2xl">
       {/* Average Rating */}
@@ -26,15 +29,16 @@ const ServiceReviews = ({ reviews }: any) => {
 
       {/* Individual Reviews */}
       <div className="flex gap-2">
-        {reviews?.data?.map((review: any) => (
+        {reviews?.data?.map((review: TReview) => (
           <div
             key={review?._id}
             className="bg-blue/80 shadow-md p-4 rounded-xl border"
           >
-            <div className="flex justify-between items-center mb-2">
+            <div className="items-center mb-2">
               <div>
                 <h3 className="font-semibold text-md">{review?.user?.name}</h3>
               </div>
+              <p className="text-sm">{review?.feedback}</p>
               <div className="rating">
                 {[1, 2, 3, 4, 5].map((i) => (
                   <input
@@ -48,7 +52,6 @@ const ServiceReviews = ({ reviews }: any) => {
                 ))}
               </div>
             </div>
-            <p className="text-sm">{review?.feedback}</p>
             <p className="text-xs mt-2">
               Reviewed on {formatDate(review?.createdAt)}
             </p>
