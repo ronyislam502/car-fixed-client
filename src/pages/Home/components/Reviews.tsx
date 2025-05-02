@@ -5,6 +5,7 @@ import { TReview } from "@/types/review";
 import { formatDate } from "@/utils/Date";
 import { FaStar } from "react-icons/fa";
 import { AnimatedProgress } from "@/utils/AnimateProgressBar";
+import ReviewSkeleton from "@/components/skeleton/ReviewSkeleton";
 
 const ReviewSummary = () => {
   const [limit, setLimit] = useState(2);
@@ -28,7 +29,7 @@ const ReviewSummary = () => {
   return (
     <Container>
       <div className="bg-black/80 p-6 rounded-md shadow-md text-white">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left: Rating Summary */}
           <div>
             <h2 className="text-xl font-semibold mb-3">Reviews</h2>
@@ -53,49 +54,53 @@ const ReviewSummary = () => {
           {/* Right: Review List */}
           <div className="py-6">
             <div className="max-h-[300px] overflow-y-auto pr-2 space-y-4">
-              {reviews?.map((review: TReview) => (
-                <div
-                  key={review?._id}
-                  className="pb-4 border-b border-gray-600"
-                >
-                  <div className="flex items-center gap-2">
-                    <div>
-                      <p className="font-semibold">
-                        {review?.user?.name || "User"}
-                      </p>
-                      <p className="text-xs text-gray-400">
-                        {formatDate(review?.createdAt)}
-                      </p>
+              {isFetching ? (
+                <ReviewSkeleton />
+              ) : (
+                reviews?.map((review: TReview) => (
+                  <div
+                    key={review?._id}
+                    className="pb-4 border-b border-gray-600"
+                  >
+                    <div className="flex items-center gap-2">
+                      <div>
+                        <p className="font-semibold">
+                          {review?.user?.name || "User"}
+                        </p>
+                        <p className="text-xs text-gray-400">
+                          {formatDate(review?.createdAt)}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="mt-2 text-sm text-gray-200">
+                      {review?.feedback}
+                    </p>
+                    <div className="mt-1 flex items-center gap-1 text-yellow-400">
+                      {Array.from({ length: 5 }).map((_, idx) => (
+                        <FaStar
+                          key={idx}
+                          size={16}
+                          fill={idx < review?.rating ? "currentColor" : "white"}
+                        />
+                      ))}
+                      <span className="ml-1 text-sm font-semibold text-white">
+                        {review?.rating}
+                      </span>
                     </div>
                   </div>
-                  <p className="mt-2 text-sm text-gray-200">
-                    {review?.feedback}
-                  </p>
-                  <div className="mt-1 flex items-center gap-1 text-yellow-400">
-                    {Array?.from({ length: 5 }).map((_, idx) => (
-                      <FaStar
-                        key={idx}
-                        size={16}
-                        fill={idx < review?.rating ? "currentColor" : "white"}
-                      />
-                    ))}
-                    <span className="ml-1 text-sm font-semibold text-white">
-                      {review?.rating}
-                    </span>
-                  </div>
-                </div>
-              ))}
+                ))
+              )}
             </div>
 
             {/* Show More Button */}
-            {reviews?.length < totalReviews && (
+            {!isFetching && reviews?.length < totalReviews && (
               <div className="pt-4 text-center">
                 <button
                   disabled={isFetching}
                   onClick={() => setLimit((prev) => prev + 4)}
                   className="btn btn-outline btn-primary btn-sm text-white"
                 >
-                  {isFetching ? "Loading..." : "See More"}
+                  See More
                 </button>
               </div>
             )}
