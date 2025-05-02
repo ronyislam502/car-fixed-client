@@ -1,6 +1,5 @@
 import Services from "@/pages/Services/Services";
 import Home from "../pages/Home/Home";
-import About from "@/pages/About/About";
 import BookingNow from "@/pages/CheckOut/BookingNow";
 import CheckOut from "@/pages/CheckOut/CheckOut";
 import ProtectedRoute from "./privateRoutes";
@@ -29,11 +28,6 @@ export const pageRoutes = [
             <CheckOut />
           </ProtectedRoute>
         ),
-      },
-      {
-        name: "About",
-        path: "about",
-        element: <About />,
       },
     ],
   },
