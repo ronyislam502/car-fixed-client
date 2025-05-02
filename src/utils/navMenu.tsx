@@ -11,8 +11,4 @@ export const MenuLinks = [
     path: "/about",
     name: "About",
   },
-  {
-    path: "/contact",
-    name: "Contact",
-  },
 ];
