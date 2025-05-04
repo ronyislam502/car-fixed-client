@@ -3,12 +3,8 @@ import { baseApi } from "../../api/baseApi";
 const reviewApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     allReviews: builder.query({
-      query: ({ page, limit, search }) => {
+      query: ({ page, limit }) => {
         const params = new URLSearchParams();
-
-        if (search) {
-          params.append("searchTerm", search);
-        }
 
         if (page) {
           params.append("page", page);

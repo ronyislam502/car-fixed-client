@@ -3,6 +3,7 @@ import Home from "../pages/Home/Home";
 import BookingNow from "@/pages/CheckOut/BookingNow";
 import CheckOut from "@/pages/CheckOut/CheckOut";
 import ProtectedRoute from "./privateRoutes";
+import About from "@/pages/About/About";
 
 export const pageRoutes = [
   {
@@ -28,6 +29,11 @@ export const pageRoutes = [
             <CheckOut />
           </ProtectedRoute>
         ),
+      },
+      {
+        name: "About",
+        path: "about",
+        element: <About />,
       },
     ],
   },
