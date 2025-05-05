@@ -2,6 +2,13 @@
 
 live: https://car-fixed-client.vercel.app/
 
+credential:
+admin: rony12@gmail.com
+password:123456
+
+user:nasrin@gmail.com
+password:123456
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
