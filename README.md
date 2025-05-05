@@ -1,6 +1,8 @@
 # React + TypeScript + Vite
 
-live: https://car-fixed-client.vercel.app/
+live: https://car-fixed-client.vercel.app
+server_live: https://car-fixed-server.vercel.app
+server_code: https://github.com/ronyislam502/car-fixed-server
 
 credential:
 admin: rony12@gmail.com
