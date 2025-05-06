@@ -67,7 +67,7 @@ const ReviewSummary = () => {
                         <p className="font-semibold">
                           {review?.user?.name || "User"}
                         </p>
-                        <p className="text-xs text-gray-400">
+                        <p className="text-xs text-white">
                           {formatDate(review?.createdAt)}
                         </p>
                       </div>

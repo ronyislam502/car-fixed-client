@@ -100,7 +100,7 @@ const ServiceSlots = ({ serviceId }: { serviceId: string }) => {
           </Link>
         ) : (
           <button
-            className="btn w-full bg-gray-200 text-gray-400 cursor-not-allowed"
+            className="btn w-full bg-gray-200 text-white cursor-not-allowed"
             disabled
           >
             Book This Service

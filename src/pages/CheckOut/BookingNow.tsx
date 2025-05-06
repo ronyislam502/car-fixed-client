@@ -12,11 +12,11 @@ const BookingNow = () => {
 
   return (
     <Container>
-      <h2 className="text-center text-2xl font-bold mt-10">
+      <h2 className="text-center text-2xl font-bold mt-10 text-white py-10">
         Service Details & Book Now{" "}
       </h2>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
-        <div className="col-span-2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 text-white">
+        <div className="col-span-2 px-4">
           <div className="card bg-black/80 shadow-sm">
             <div className="card-body items-center ">
               <div className="flex gap-6">
@@ -39,7 +39,7 @@ const BookingNow = () => {
             </div>
           </div>
         </div>
-        <div className="col-span-1">
+        <div className="col-span-1 px-16">
           <ServiceSlots serviceId={service?._id} />
         </div>
       </div>
