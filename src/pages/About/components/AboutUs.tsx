@@ -10,7 +10,7 @@ const AboutUs = () => {
             className="h-[500px]"
           />
         </figure>
-        <div className="">
+        <div className="text-white">
           <h4 className="text-xl font-bold">About Us</h4>
           <h2 className="text-4xl font-extrabold pb-2">
             Care<span className="text-red-500">x</span> Car <br />

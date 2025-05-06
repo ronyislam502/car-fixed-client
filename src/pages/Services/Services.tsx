@@ -33,18 +33,19 @@ const Services = () => {
         <p className="text-center text-white font-bold text-xl my-2">
           Choose your needed service
         </p>
-        <div className="grid grid-cols-1 lg:grid-cols-3 max-w-5xl mx-auto py-6 px-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 py-6 px-10 items-center text-center">
           <div>
-            <h2 className="text-xl font-bold">Search</h2>
+            <h2 className="text-2xl font-bold text-white">Search</h2>
             <input
               className="input input-success"
               type="text"
+              placeholder="search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
           <div>
-            <h2 className="text-xl font-bold">Category</h2>
+            <h2 className="text-2xl font-bold text-white">Category</h2>
             <select
               className="select select-success ml-2"
               value={category}
@@ -57,7 +58,7 @@ const Services = () => {
             </select>
           </div>
           <div>
-            <h2 className="text-xl font-bold">Sort by Price</h2>
+            <h2 className="text-2xl font-bold text-white">Sort by Price</h2>
             <select
               className="select select-success ml-2"
               value={sort}

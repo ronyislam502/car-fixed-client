@@ -21,7 +21,7 @@ const OurTeam = () => {
   ];
 
   return (
-    <div className="text-center py-6 px-6">
+    <div className="text-center py-6 px-6 text-white">
       <div className="">
         <h4 className="text-xl font-bold">Certified Team</h4>
         <h2 className="text-4xl font-extrabold pb-2">Our Experts Team</h2>

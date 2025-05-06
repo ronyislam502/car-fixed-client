@@ -26,7 +26,7 @@ const HowWeWork = () => {
   ];
 
   return (
-    <div className="text-center py-6 px-6">
+    <div className="text-center py-6 px-6 text-white">
       <h4 className="text-xl font-bold">How We Work</h4>
       <h2 className="text-4xl font-extrabold pb-2">Our Process</h2>
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 py-2">
