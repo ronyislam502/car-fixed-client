@@ -16,7 +16,7 @@ const SlotsManage = () => {
   const totalPages = slots?.meta?.totalPage || 1;
 
   return (
-    <div className="mt-2 bg-black/80">
+    <div className="mt-2 bg-black/80 text-white">
       <div className="text-xl font-bold text-center py-6">
         <h2>Slots</h2>
       </div>

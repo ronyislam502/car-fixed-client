@@ -3,10 +3,15 @@ import { baseApi } from "../../api/baseApi";
 const bookingApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllBookings: builder.query({
-      query: (args) => {
-        console.log(args);
+      query: ({ page, limit }) => {
         const params = new URLSearchParams();
-        console.log(params);
+
+        if (page) {
+          params.append("page", page);
+        }
+        if (limit) {
+          params.append("limit", limit);
+        }
 
         return {
           url: "/bookings",

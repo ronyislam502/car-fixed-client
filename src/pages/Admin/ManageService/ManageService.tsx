@@ -26,7 +26,7 @@ const ManageService = () => {
   const totalPages = services?.meta?.totalPage || 1;
 
   return (
-    <div className="my-2 bg-black/80">
+    <div className="my-2 bg-black/80 text-white">
       <div className="text-xl font-bold text-center py-2">
         <h2 className="text-xl pb-2">Service Management</h2>
         <div className="flex gap-2 px-2">

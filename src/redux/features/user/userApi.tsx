@@ -4,7 +4,7 @@ import { baseApi } from "../../api/baseApi";
 const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     allUsers: builder.query({
-      query: () => {
+      query: ({ page, limit }) => {
         const params = new URLSearchParams();
 
         // if (search) {
@@ -13,12 +13,12 @@ const userApi = baseApi.injectEndpoints({
         // if (role) {
         //   params.append("role", role);
         // }
-        // if (page) {
-        //   params.append("page", page);
-        // }
-        // if (limit) {
-        //   params.append("limit", limit);
-        // }
+        if (page) {
+          params.append("page", page);
+        }
+        if (limit) {
+          params.append("limit", limit);
+        }
 
         return {
           url: "/users",

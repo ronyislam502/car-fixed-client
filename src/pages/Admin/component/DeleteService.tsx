@@ -30,7 +30,7 @@ const DeleteService = ({ service }: TProps) => {
     <div>
       <div className="flex mb-4  flex-col items-center justify-center">
         <button
-          className="btn btn-outline btn-error"
+          className="btn btn-outline btn-error text-white"
           onClick={() => setIsOpen(true)}
         >
           Delete

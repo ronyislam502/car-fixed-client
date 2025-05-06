@@ -18,7 +18,7 @@ const UserBookings = () => {
   const totalPages = bookings?.meta?.totalPage || 1;
 
   return (
-    <div className="mt-2 bg-black/80">
+    <div className="mt-2 bg-black/80 text-white">
       <div className="text-xl font-bold text-center py-6">
         <h2>Bookings</h2>
       </div>

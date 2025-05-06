@@ -9,7 +9,7 @@ import { Outlet } from "react-router-dom";
 const Dashboard = () => {
   return (
     <div
-      className="h-[100vh]"
+      className="min-h-screen"
       style={{
         backgroundImage: "url(https://i.postimg.cc/cLZtfCmD/car-dis.webp)",
         backgroundRepeat: "no-repeat",
@@ -26,7 +26,7 @@ const Dashboard = () => {
           </div>
 
           {/* Main Content */}
-          <div className="w-full lg:w-5/6 h-[60vh]">
+          <div className="w-full lg:w-5/6 h-[67vh]">
             <Outlet />
           </div>
         </div>
