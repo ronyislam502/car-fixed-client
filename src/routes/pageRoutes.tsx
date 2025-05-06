@@ -13,7 +13,7 @@ export const pageRoutes = [
     children: [
       {
         name: "Services",
-        path: "services",
+        path: "/services",
         element: <Services />,
       },
       {
@@ -32,7 +32,7 @@ export const pageRoutes = [
       },
       {
         name: "About",
-        path: "about",
+        path: "/about",
         element: <About />,
       },
     ],
