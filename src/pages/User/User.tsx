@@ -14,7 +14,7 @@ const User = () => {
   if (isLoading) return <UserSkeleton />;
 
   return (
-    <div className="card bg-black/80 shadow-sm">
+    <div className="card bg-black/80 text-white shadow-sm">
       <h2 className="text-center text-4xl font-bold p-6">user Info</h2>
       <div className="flex gap-6">
         <figure className="px-10 py-10">
