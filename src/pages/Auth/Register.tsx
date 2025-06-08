@@ -2,6 +2,7 @@ import CFForm from "@/components/form/CFFrom";
 import CFInput from "@/components/form/CFInput";
 import { useSignUpMutation } from "@/redux/features/auth/authApi";
 import { registerUserValidationSchema } from "@/schema/userSchema";
+import { TError } from "@/types/global";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChangeEvent, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
@@ -53,7 +54,9 @@ const Register = () => {
         navigate("/login")
       }
     } catch (error) {
-      console.log(error)
+      const err = error as TError;
+      
+      toast.error(err?.data?.message);
     }
   };
 

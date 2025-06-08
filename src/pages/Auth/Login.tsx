@@ -4,6 +4,7 @@ import { useLogInMutation } from "@/redux/features/auth/authApi";
 import { setUser } from "@/redux/features/auth/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { loginValidationSchema } from "@/schema/authSchema";
+import { TError } from "@/types/global";
 import { verifyToken } from "@/utils/verifyToken";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldValues } from "react-hook-form";
@@ -16,22 +17,28 @@ const Login = () => {
   const [login] = useLogInMutation();
 
   const onSubmit = async (data: FieldValues) => {
-    const authInfo = {
-      email: data.email,
-      password: data.password,
-    };
-    const res = await login(authInfo).unwrap();
-    const user = verifyToken(res?.data?.accessToken);
-    dispatch(setUser({ user: user, token: res?.data?.accessToken }));
-    if (res?.success) {
-      toast.success(res?.message);
-      navigate("/");
+    try {
+      const authInfo = {
+        email: data.email,
+        password: data.password,
+      };
+      const res = await login(authInfo).unwrap();
+      const user = verifyToken(res?.data?.accessToken);
+      dispatch(setUser({ user: user, token: res?.data?.accessToken }));
+      if (res?.success) {
+        toast.success(res?.message);
+        navigate("/");
+      }
+    } catch (error) {
+      const err = error as TError;
+      
+      toast.error(err?.data?.message);
     }
   };
 
   return (
     <div
-      className="flex h-[100vh] w-full flex-col items-center justify-center text-white"
+      className="flex h-[67vh] w-full flex-col items-center justify-center text-white"
       style={{
         backgroundImage:
           "url(https://i.postimg.cc/cLZtfCmD/car-dis.webp)",

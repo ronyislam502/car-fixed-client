@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Container from "@/components/ui/Container";
 import { useAllReviewsQuery } from "@/redux/features/review/reviewApi";
 import { TReview } from "@/types/review";
@@ -6,12 +5,11 @@ import { formatDate } from "@/utils/Date";
 import { FaStar } from "react-icons/fa";
 import { AnimatedProgress } from "@/utils/AnimateProgressBar";
 import ReviewSkeleton from "@/components/skeleton/ReviewSkeleton";
+import { useState } from "react";
 
 const ReviewSummary = () => {
-  const [limit, setLimit] = useState(2);
+  const [visibleCount, setVisibleCount] = useState(2);
   const { data: reviewData, isFetching } = useAllReviewsQuery({
-    page: 1,
-    limit,
   });
 
   const reviews = reviewData?.data?.data;
@@ -57,7 +55,7 @@ const ReviewSummary = () => {
               {isFetching ? (
                 <ReviewSkeleton />
               ) : (
-                reviews?.map((review: TReview) => (
+                reviews?.slice(0, visibleCount).map((review: TReview) => (
                   <div
                     key={review?._id}
                     className="pb-4 border-b border-gray-600"
@@ -93,11 +91,10 @@ const ReviewSummary = () => {
             </div>
 
             {/* Show More Button */}
-            {!isFetching && reviews?.length < totalReviews && (
+               {!isFetching && visibleCount < reviews.length && (
               <div className="pt-4 text-center">
                 <button
-                  disabled={isFetching}
-                  onClick={() => setLimit((prev) => prev + 4)}
+                  onClick={() => setVisibleCount((prev) => prev + 4)}
                   className="btn btn-outline btn-primary btn-sm text-white"
                 >
                   See More

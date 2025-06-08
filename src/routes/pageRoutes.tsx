@@ -4,6 +4,7 @@ import BookingNow from "@/pages/CheckOut/BookingNow";
 import CheckOut from "@/pages/CheckOut/CheckOut";
 import ProtectedRoute from "./privateRoutes";
 import About from "@/pages/About/About";
+import Login from "@/pages/Auth/Login";
 
 
 export const pageRoutes = [
@@ -35,6 +36,11 @@ export const pageRoutes = [
         name: "About",
         path: "/about",
         element: <About />,
+      },
+      { 
+        name:"Login", 
+        path: "/login", 
+        element: <Login /> 
       },
     ],
   },
