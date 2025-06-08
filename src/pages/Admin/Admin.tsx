@@ -12,24 +12,19 @@ const Admin = () => {
 
   return (
     <div>
-      <h2 className="text-center text-4xl font-bold py-6">Sales Dashboard</h2>
+      <h2 className="text-center text-4xl font-bold py-6 text-white">Sales Dashboard</h2>
 
-      <h2 className="text-2xl font-bold p-2">
+      <h2 className="text-2xl font-bold p-2 text-white">
         Revenue:{" "}
         <span className="text-green-500">${revenue?.totalRevenue}</span>
       </h2>
-
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Category-wise */}
         <div
-          className="card shadow-xl"
-          style={{
-            backgroundImage:
-              "url(https://i.postimg.cc/3xhFNrF5/Screenshot-2025-04-27-061224.png)",
-          }}
+          className="card shadow-xl bg-black/80"
         >
           <div className="card-header">
-            <h3 className="text-center text-2xl font-semibold">
+            <h3 className="text-center text-2xl font-semibold text-white">
               Category-wise
             </h3>
           </div>
@@ -40,14 +35,10 @@ const Admin = () => {
 
         {/* service-wise  */}
         <div
-          className="card shadow-xl"
-          style={{
-            backgroundImage:
-              "url(https://i.postimg.cc/3xhFNrF5/Screenshot-2025-04-27-061224.png)",
-          }}
+          className="card shadow-xl bg-black/80"
         >
           <div className="card-header">
-            <h3 className="text-center text-2xl font-bold">Service-wise</h3>
+            <h3 className="text-center text-2xl font-bold text-white">Service-wise</h3>
           </div>
           <div className="card-body">
             <ServiceStats data={serviceData} />

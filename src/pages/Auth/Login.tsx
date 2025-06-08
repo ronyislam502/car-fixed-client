@@ -34,15 +34,15 @@ const Login = () => {
       className="flex h-[100vh] w-full flex-col items-center justify-center text-white"
       style={{
         backgroundImage:
-          "url(https://i.postimg.cc/gjs4PnnK/Screenshot-2025-04-27-084427.png)",
+          "url(https://i.postimg.cc/cLZtfCmD/car-dis.webp)",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div>
-        <h3 className="my-2 text-2xl font-bold">Login with Car-Fixed</h3>
-        <p className="mb-4">Welcome Back! Let&lsquo;s Get Started</p>
+      <div className=" bg-black/80 px-16 py-6 rounded-2xl">
+        <h3 className="my-2 text-2xl font-bold text-center">Login with Car-Fixed</h3>
+        <p className="mb-4 text-center">Welcome Back! Let&lsquo;s Get Started</p>
         <CFForm
           resolver={zodResolver(loginValidationSchema)}
           onSubmit={onSubmit}

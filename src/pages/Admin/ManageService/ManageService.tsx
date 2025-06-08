@@ -31,13 +31,13 @@ const ManageService = () => {
         <h2 className="text-xl pb-2">Service Management</h2>
         <div className="flex gap-2 px-2">
           <input
-            className="input input-success"
+            className="input input-success bg-black"
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
           <select
-            className="select select-success ml-2"
+            className="select select-success bg-black ml-2"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
@@ -47,7 +47,7 @@ const ManageService = () => {
             <option key="maintain">Maintain</option>
           </select>
           <select
-            className="select select-success ml-2"
+            className="select select-success ml-2 bg-black"
             value={sort}
             onChange={(e) => setSort(e.target.value)}
           >

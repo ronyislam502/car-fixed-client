@@ -25,7 +25,7 @@ const routes = createBrowserRouter([
     children: routeGenerator(adminRoutes),
   },
   {
-    path: "/user",
+    path: "/USER",
     element: (
       <ProtectedRoute role="USER">
         <Dashboard />

@@ -5,6 +5,7 @@ import CheckOut from "@/pages/CheckOut/CheckOut";
 import ProtectedRoute from "./privateRoutes";
 import About from "@/pages/About/About";
 
+
 export const pageRoutes = [
   {
     name: "Home",

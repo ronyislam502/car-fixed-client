@@ -10,6 +10,7 @@ const User = () => {
     loggedUser?.email
   );
   const user = userData?.data[0];
+  // console.log(user)
 
   if (isLoading) return <UserSkeleton />;
 
